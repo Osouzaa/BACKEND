@@ -1,0 +1,39 @@
+@userId = 123e4567-e89b-12d3-a456-426614174000
+
+### Criar usuário (POST /users)
+POST http://localhost:3000/users
+Content-Type: application/json
+
+{
+  "name": "Gabriel",
+  "surname": "Souza",
+  "email": "gabriel@example.com",
+  "cpf": "12345678901",
+  "password": "123456"
+}
+
+###
+
+### Listar todos os usuários (GET /users)
+GET http://localhost:3000/users
+
+###
+
+### Buscar usuário por ID (GET /users/{{userId}})
+GET http://localhost:3000/users/{{userId}}
+
+###
+
+### Atualizar usuário (PUT /users/{{userId}})
+PUT http://localhost:3000/users/{{userId}}
+Content-Type: application/json
+
+{
+  "name": "Gabriel Updated",
+  "password": "newpassword123"
+}
+
+###
+
+### Deletar usuário (DELETE /users/{{userId}})
+DELETE http://localhost:3000/users/{{userId}}

@@ -1,0 +1,73 @@
+<mxfile host="65bd71144e">
+    <diagram id="BKbo5iaDQK896m7xhEGL" name="Page-1">
+        <mxGraphModel dx="911" dy="468" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+            <root>
+                <mxCell id="0"/>
+                <mxCell id="1" parent="0"/>
+                <mxCell id="2" value="Processo Seletivo (ADMIN)" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                    <mxGeometry x="75" y="10" width="680" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="5" value="" style="edgeStyle=none;html=1;" edge="1" parent="1" source="3" target="4">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="3" value="Entra no sistema.&lt;br&gt;(email, senha)&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;/admin/login&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                    <mxGeometry x="75" y="80" width="130" height="70" as="geometry"/>
+                </mxCell>
+                <mxCell id="7" style="edgeStyle=none;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" edge="1" parent="1" source="4" target="8">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="455" y="110" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="15" style="edgeStyle=none;html=1;" edge="1" parent="1" source="4" target="16">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="185" y="280" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="4" value="Acesso a todos processos em abertos.&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;/admin/allProces&lt;/div&gt;" style="whiteSpace=wrap;html=1;rounded=0;" vertex="1" parent="1">
+                    <mxGeometry x="255" y="120" width="140" height="80" as="geometry"/>
+                </mxCell>
+                <mxCell id="10" style="edgeStyle=none;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="8" target="9">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="8" value="CRIAR um novo processo seletivo.&lt;div&gt;POST /created/process&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                    <mxGeometry x="445" y="80" width="140" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="12" value="" style="edgeStyle=none;html=1;" edge="1" parent="1" source="9" target="11">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="9" value="Criando o processo.&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;Definir o nome,&lt;/div&gt;&lt;div&gt;Descrição opcional&lt;/div&gt;&lt;div&gt;Data de inicio&lt;/div&gt;&lt;div&gt;Data de finalização&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                    <mxGeometry x="615" y="70" width="145" height="120" as="geometry"/>
+                </mxCell>
+                <mxCell id="14" value="" style="edgeStyle=none;html=1;" edge="1" parent="1" source="11" target="13">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="11" value="Criar os campos para o candidato se cadastrar.&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;Nome - type string&lt;/div&gt;&lt;div&gt;Order - ordem que irar aparecer no formulario&lt;/div&gt;&lt;div&gt;Required - boolean&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;" style="whiteSpace=wrap;html=1;rounded=0;strokeWidth=1;perimeterSpacing=2;" vertex="1" parent="1">
+                    <mxGeometry x="605" y="200" width="160" height="160" as="geometry"/>
+                </mxCell>
+                <mxCell id="13" value="Com os campos automaticamente gera o formulario.&lt;br&gt;&lt;br&gt;campos.map(() =&amp;gt; {})" style="whiteSpace=wrap;html=1;rounded=0;" vertex="1" parent="1">
+                    <mxGeometry x="405" y="225" width="150" height="110" as="geometry"/>
+                </mxCell>
+                <mxCell id="17" style="edgeStyle=none;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" edge="1" parent="1" source="16" target="18">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="140.28571428571433" y="350" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="16" value="O administrador deve conseguir ver os candidatos cadastrados naquele processo&lt;br&gt;&lt;br&gt;GET process/educ" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                    <mxGeometry x="70" y="190" width="140" height="100" as="geometry"/>
+                </mxCell>
+                <mxCell id="20" value="" style="edgeStyle=none;html=1;" edge="1" parent="1" source="18" target="19">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="18" value="Consegue ver todas as informações cadastrados do candidato" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                    <mxGeometry x="80.28571428571433" y="320" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="19" value="Administrador consegue avaliar um candidatos.&lt;br&gt;&lt;br&gt;Pontuação" style="whiteSpace=wrap;html=1;rounded=0;" vertex="1" parent="1">
+                    <mxGeometry x="245" y="250" width="120" height="100" as="geometry"/>
+                </mxCell>
+                <mxCell id="31" value="" style="ellipse;shape=cloud;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                    <mxGeometry x="425" y="140" width="120" height="80" as="geometry"/>
+                </mxCell>
+            </root>
+        </mxGraphModel>
+    </diagram>
+</mxfile>

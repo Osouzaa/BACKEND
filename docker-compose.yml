@@ -1,0 +1,40 @@
+version: '3.8'
+
+services:
+  app:
+    build: .
+    container_name: nestjs_app
+    restart: unless-stopped
+    ports:
+      - "3000:3000"
+    environment:
+      - DB_HOST=sqlserver
+      - DB_PORT=1433
+      - DB_USERNAME=sa
+      - DB_PASSWORD=YourStrong@Passw0rd
+      - DB_DATABASE=nestjsdb
+    depends_on:
+      - sqlserver
+    networks:
+      - nest_network
+
+  sqlserver:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    container_name: sqlserver
+    restart: unless-stopped
+    environment:
+      SA_PASSWORD: "YourStrong@Passw0rd"
+      ACCEPT_EULA: "Y"
+    ports:
+      - "1433:1433"
+    networks:
+      - nest_network
+    volumes:
+      - sqlserver_data:/var/opt/mssql
+
+networks:
+  nest_network:
+    driver: bridge
+
+volumes:
+  sqlserver_data:

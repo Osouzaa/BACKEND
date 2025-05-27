@@ -14,6 +14,12 @@ export class Candidate {
   @Column({ type: 'varchar', length: 20 })
   phone: string;
 
+  @Column({ type: 'varchar', nullable: false })
+  passwordHash: string;
+
+  @Column({ type: 'timestamp', nullable: true })
+  verifiedAt: Date | null;
+
   @Column({ type: 'varchar', length: 14 })
   cpf: string;
 

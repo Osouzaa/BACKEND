@@ -18,7 +18,7 @@ export class CreateCandidateDto {
 
   @IsString()
   @IsNotEmpty()
-  passwordHash: string;
+  password: string;
 
   @IsString()
   birthDate: string; // usar string para receber data em ISO

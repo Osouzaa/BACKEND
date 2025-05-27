@@ -38,7 +38,7 @@ export class Candidate {
   @Column({ type: 'varchar', length: 10 })
   zipCode: string;
 
-  @Column({ type: 'varchar' })
+  @Column({ type: 'varchar', nullable: true })
   urlZipCode: string;
 
   @CreateDateColumn()

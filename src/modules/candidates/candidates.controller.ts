@@ -5,7 +5,7 @@ import { UpdateCandidateDto } from './dto/update-candidate.dto';
 
 @Controller('candidates')
 export class CandidatesController {
-  constructor(private readonly candidatesService: CandidatesService) {}
+  constructor(private readonly candidatesService: CandidatesService) { }
 
   @Post()
   create(@Body() createCandidateDto: CreateCandidateDto) {
@@ -19,16 +19,16 @@ export class CandidatesController {
 
   @Get(':id')
   findOne(@Param('id') id: string) {
-    return this.candidatesService.findOne(+id);
+    return this.candidatesService.findOne(id);
   }
 
   @Patch(':id')
   update(@Param('id') id: string, @Body() updateCandidateDto: UpdateCandidateDto) {
-    return this.candidatesService.update(+id, updateCandidateDto);
+    return this.candidatesService.update(id, updateCandidateDto);
   }
 
   @Delete(':id')
   remove(@Param('id') id: string) {
-    return this.candidatesService.remove(+id);
+    return this.candidatesService.remove(id);
   }
 }

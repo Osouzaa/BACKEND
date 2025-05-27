@@ -1,8 +1,8 @@
-import "dotenv/config"
+import 'dotenv/config';
 import { z } from 'zod';
 
 const envSchema = z.object({
-  NODE_ENV: z.enum(['dev', ' test', 'production']).default('dev'),
+  NODE_ENV: z.enum(['dev', 'test', 'production']).default('dev'),
   PORT: z.coerce.number().default(3333),
   DB_HOST: z.string(),
   DB_PORT: z.coerce.number(),
@@ -11,11 +11,11 @@ const envSchema = z.object({
   DB_NAME: z.string(),
 });
 
-const _env = envSchema.safeParse(process.env)
+const _env = envSchema.safeParse(process.env);
 
 if (_env.success === false) {
-  console.error('🚫 Error Environment variable', _env.error.format())
-  throw new Error('🚫 Error Environment variable')
+  console.error('🚫 Error Environment variable', _env.error.format());
+  throw new Error('🚫 Error Environment variable');
 }
 
 export const env = _env.data;

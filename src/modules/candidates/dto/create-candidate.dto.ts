@@ -1,4 +1,4 @@
-import { IsString, IsEmail, IsDateString, Length, IsOptional } from 'class-validator';
+import { IsString, IsEmail, IsDateString, Length, IsOptional, IsNotEmpty } from 'class-validator';
 
 export class CreateCandidateDto {
   @IsString()
@@ -15,6 +15,10 @@ export class CreateCandidateDto {
   @IsString()
   @Length(11, 14)
   cpf: string;
+
+  @IsString()
+  @IsNotEmpty()
+  passwordHash: string;
 
   @IsString()
   birthDate: string; // usar string para receber data em ISO

@@ -9,7 +9,6 @@ import * as bcrypt from 'bcrypt';
 import { Repository } from 'typeorm';
 import { InjectRepository } from '@nestjs/typeorm';
 import { User } from '../users/entities/user.entity';
-import { RegisterUserDto } from './dto/register-user.dto';
 import { LoginUserDto } from './dto/login-auth.dto';
 import { JwtPayload } from './interfaces/jwt-payload.interface';
 
@@ -55,52 +54,6 @@ export class AuthService {
       }
       throw new InternalServerErrorException(
         'Internal error while trying to login',
-      );
-    }
-  }
-
-  async register(registerUserDto: RegisterUserDto) {
-    try {
-      const { name, surname, email, password, cpf } = registerUserDto;
-
-      const userExists = await this.userRepository.findOne({
-        where: { email },
-      });
-      if (userExists) {
-        throw new BadRequestException(
-          'User already registered with this email.',
-        );
-      }
-
-      const hashedPassword = await bcrypt.hash(password, 10);
-
-      const newUser = this.userRepository.create({
-        name,
-        surname,
-        email,
-        password: hashedPassword,
-        cpf,
-      });
-
-      await this.userRepository.save(newUser);
-
-      return {
-        id: newUser.id,
-        name: newUser.name,
-        surname: newUser.surname,
-        email: newUser.email,
-      };
-    } catch (error) {
-      console.error('Error in register:', error);
-
-      if (
-        error instanceof UnauthorizedException ||
-        error instanceof BadRequestException
-      ) {
-        throw error;
-      }
-      throw new InternalServerErrorException(
-        'Internal error while trying to register user',
       );
     }
   }

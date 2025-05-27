@@ -2,6 +2,7 @@ import { TypeOrmModule } from "@nestjs/typeorm";
 import { Module } from "@nestjs/common";
 import { env } from "src/config/env";
 import { User } from "src/modules/users/entities/user.entity";
+import { Candidate } from "src/modules/candidates/entities/candidate.entity";
 
 @Module({
   imports: [
@@ -12,7 +13,7 @@ import { User } from "src/modules/users/entities/user.entity";
       username: env.DB_USERNAME,
       password: env.DB_PASSWORD,
       database: env.DB_NAME,
-      entities: [User],
+      entities: [User, Candidate],
       options: {
         encrypt: false, // importante se estiver rodando localmente
         trustServerCertificate: true,

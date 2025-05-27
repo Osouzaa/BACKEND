@@ -16,7 +16,7 @@ import { AuthModule } from './modules/auth/auth.module';
     DataBaseModule,
     UsersModule,
 
-    CandidatesModule],
+    CandidatesModule,
 
     AuthModule],
 

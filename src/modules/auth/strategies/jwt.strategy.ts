@@ -1,40 +1,44 @@
 import { Injectable, UnauthorizedException } from '@nestjs/common';
 import { PassportStrategy } from '@nestjs/passport';
 import { Strategy, ExtractJwt } from 'passport-jwt';
-import { ConfigService } from '@nestjs/config';
-import type { JwtPayload } from '../interfaces/jwt-payload.interface';
 
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { User } from 'src/modules/users/entities/user.entity';
+import { JwtPayloadUser } from '../interfaces/jwt-payload-user.interface';
+import { JwtPayloadCandidate } from '../interfaces/jwt-payload-candidate.interface';
+import { Candidate } from 'src/modules/candidates/entities/candidate.entity';
+import { env } from 'src/config/env';
 
 @Injectable()
 export class JwtStrategy extends PassportStrategy(Strategy) {
   constructor(
-    configService: ConfigService,
     @InjectRepository(User)
     private userRepository: Repository<User>,
+    @InjectRepository(Candidate)
+    private candidateRepository: Repository<Candidate>,
   ) {
-    const secret = configService.get<string>('SECRET_KEY');
-    if (!secret) {
-      throw new Error('SECRET_KEY não está definido no .env');
-    }
-
     super({
       jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
-      secretOrKey: secret,
+      secretOrKey: env.SECRET_KEY,
     });
   }
 
-  async validate(payload: JwtPayload) {
-    const { email } = payload;
+  async validate(payload: JwtPayloadUser | JwtPayloadCandidate): Promise<any> {
+    const { email, role } = payload;
 
-    const user = await this.userRepository.findOne({ where: { email } });
-
-    if (!user) {
-      throw new UnauthorizedException('Usuário não encontrado');
+    if (role === 'admin') {
+      const user = await this.userRepository.findOne({ where: { email } });
+      if (!user) throw new UnauthorizedException('User not found');
+      return { ...user, role };
+    } else if (role === 'candidate') {
+      const candidate = await this.candidateRepository.findOne({
+        where: { email },
+      });
+      if (!candidate) throw new UnauthorizedException('User not found');
+      return { ...candidate, role };
     }
 
-    return user;
+    throw new UnauthorizedException('User not found');
   }
 }

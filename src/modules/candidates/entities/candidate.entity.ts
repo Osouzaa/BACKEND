@@ -1,4 +1,5 @@
-import { Column, Entity, PrimaryGeneratedColumn, CreateDateColumn, UpdateDateColumn } from "typeorm";
+import { Experience } from "src/modules/experience/entities/experience.entity";
+import { Column, Entity, PrimaryGeneratedColumn, CreateDateColumn, UpdateDateColumn, OneToMany } from "typeorm";
 
 @Entity('candidates')
 export class Candidate {
@@ -49,4 +50,6 @@ export class Candidate {
 
 
   // TODO: CRIAR ENTIDADE DE EDUCATIONS E EXPERIENCIES
+  @OneToMany(() => Experience, (experience) => experience.candidate, { cascade: true })
+  experiences: Experience[];
 }

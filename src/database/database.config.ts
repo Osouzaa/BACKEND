@@ -3,6 +3,7 @@ import { Module } from "@nestjs/common";
 import { env } from "src/config/env";
 import { User } from "src/modules/users/entities/user.entity";
 import { Candidate } from "src/modules/candidates/entities/candidate.entity";
+import { Experience } from "src/modules/experience/entities/experience.entity";
 
 @Module({
   imports: [
@@ -13,7 +14,7 @@ import { Candidate } from "src/modules/candidates/entities/candidate.entity";
       username: env.DB_USERNAME,
       password: env.DB_PASSWORD,
       database: env.DB_NAME,
-      entities: [User, Candidate],
+      entities: [User, Candidate, Experience],
       options: {
         encrypt: false, // importante se estiver rodando localmente
         trustServerCertificate: true,

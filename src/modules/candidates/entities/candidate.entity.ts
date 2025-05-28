@@ -1,4 +1,12 @@
-import { Column, Entity, PrimaryGeneratedColumn, CreateDateColumn, UpdateDateColumn } from "typeorm";
+import { Education } from 'src/modules/education/entities/education.entity';
+import {
+  Column,
+  Entity,
+  PrimaryGeneratedColumn,
+  CreateDateColumn,
+  UpdateDateColumn,
+  OneToMany,
+} from 'typeorm';
 
 @Entity('candidates')
 export class Candidate {
@@ -47,6 +55,8 @@ export class Candidate {
   @UpdateDateColumn()
   updatedAt: Date;
 
+  @OneToMany(() => Education, (education) => education.candidate)
+  educations: Education[];
 
   // TODO: CRIAR ENTIDADE DE EDUCATIONS E EXPERIENCIES
 }

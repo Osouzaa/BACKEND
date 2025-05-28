@@ -7,7 +7,6 @@ import { CandidatesModule } from './modules/candidates/candidates.module';
 
 import { AuthModule } from './modules/auth/auth.module';
 
-
 @Module({
   imports: [
     ConfigModule.forRoot({
@@ -15,9 +14,7 @@ import { AuthModule } from './modules/auth/auth.module';
     }),
     DataBaseModule,
     UsersModule,
-
     CandidatesModule,
-
     AuthModule],
 
   controllers: [],

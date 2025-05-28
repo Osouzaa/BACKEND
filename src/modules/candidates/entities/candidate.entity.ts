@@ -8,7 +8,7 @@ export class Candidate {
   @Column({ type: 'varchar', length: 100 })
   name: string;
 
-  @Column({ type: 'varchar', length: 100, unique: true })
+  @Column({ type: 'varchar', length: 100 })
   email: string;
 
   @Column({ type: 'varchar', length: 20 })
@@ -20,7 +20,7 @@ export class Candidate {
   @Column({ type: 'datetime2', nullable: true })
   verifiedAt: Date | null;
 
-  @Column({ type: 'varchar', length: 14 })
+  @Column({ type: 'varchar', length: 14, unique: true })
   cpf: string;
 
   @Column({ type: 'varchar' })

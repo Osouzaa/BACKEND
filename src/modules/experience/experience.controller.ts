@@ -5,7 +5,7 @@ import { UpdateExperienceDto } from './dto/update-experience.dto';
 
 @Controller('experience')
 export class ExperienceController {
-  constructor(private readonly experienceService: ExperienceService) {}
+  constructor(private readonly experienceService: ExperienceService) { }
 
   @Post()
   create(@Body() createExperienceDto: CreateExperienceDto) {
@@ -19,16 +19,16 @@ export class ExperienceController {
 
   @Get(':id')
   findOne(@Param('id') id: string) {
-    return this.experienceService.findOne(+id);
+    return this.experienceService.findOne(id);
   }
 
   @Patch(':id')
   update(@Param('id') id: string, @Body() updateExperienceDto: UpdateExperienceDto) {
-    return this.experienceService.update(+id, updateExperienceDto);
+    return this.experienceService.update(id, updateExperienceDto);
   }
 
   @Delete(':id')
   remove(@Param('id') id: string) {
-    return this.experienceService.remove(+id);
+    return this.experienceService.remove(id);
   }
 }

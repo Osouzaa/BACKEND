@@ -16,9 +16,16 @@ export class EducationService {
     private readonly educationRepository: Repository<Education>,
   ) {}
 
-  async create(createEducationDto: CreateEducationDto): Promise<Education> {
+  async create(
+    createEducationDto: CreateEducationDto,
+    candidateId: string,
+  ): Promise<Education> {
     try {
-      const education = this.educationRepository.create(createEducationDto);
+      const education = this.educationRepository.create({
+        ...createEducationDto,
+        candidate: { id: candidateId },
+      });
+
       return await this.educationRepository.save(education);
     } catch (error) {
       throw new InternalServerErrorException(
@@ -29,7 +36,9 @@ export class EducationService {
 
   async findAll(): Promise<Education[]> {
     try {
-      return await this.educationRepository.find();
+      return await this.educationRepository.find({
+        relations: ['candidate'],
+      });
     } catch (error) {
       throw new InternalServerErrorException(
         `Failed to retrieve educations: ${error.message}`,

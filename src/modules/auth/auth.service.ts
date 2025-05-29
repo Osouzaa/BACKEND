@@ -35,9 +35,12 @@ export class AuthService {
       if (user) {
         passwordHash = user.password;
       } else {
-        candidate = await this.candidateRepository.findOne({
-          where: { email },
-        });
+        candidate = await this.candidateRepository
+          .createQueryBuilder('candidate')
+          .addSelect('candidate.passwordHash')
+          .where('candidate.email = :email', { email })
+          .getOne();
+
         if (candidate) {
           passwordHash = candidate.passwordHash;
         }

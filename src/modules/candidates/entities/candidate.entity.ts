@@ -23,7 +23,7 @@ export class Candidate {
   @Column({ type: 'varchar', length: 20 })
   phone: string;
 
-  @Column({ type: 'varchar', nullable: false })
+  @Column({ type: 'varchar', nullable: false, select: false })
   passwordHash: string;
 
   @Column({ type: 'datetime2', nullable: true })
@@ -56,9 +56,13 @@ export class Candidate {
   @UpdateDateColumn()
   updatedAt: Date;
 
-  @OneToMany(() => Education, (education) => education.candidate, { cascade: true })
+  @OneToMany(() => Education, (education) => education.candidate, {
+    cascade: true,
+  })
   educations: Education[];
 
-  @OneToMany(() => Experience, (experience) => experience.candidate, { cascade: true })
+  @OneToMany(() => Experience, (experience) => experience.candidate, {
+    cascade: true,
+  })
   experiences: Experience[];
 }

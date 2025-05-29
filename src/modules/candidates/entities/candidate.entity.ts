@@ -1,5 +1,13 @@
-import { Experience } from "src/modules/experience/entities/experience.entity";
-import { Column, Entity, PrimaryGeneratedColumn, CreateDateColumn, UpdateDateColumn, OneToMany } from "typeorm";
+import { Education } from 'src/modules/education/entities/education.entity';
+import { Experience } from 'src/modules/experience/entities/experience.entity';
+import {
+  Column,
+  Entity,
+  PrimaryGeneratedColumn,
+  CreateDateColumn,
+  UpdateDateColumn,
+  OneToMany,
+} from 'typeorm';
 
 @Entity('candidates')
 export class Candidate {
@@ -48,8 +56,9 @@ export class Candidate {
   @UpdateDateColumn()
   updatedAt: Date;
 
+  @OneToMany(() => Education, (education) => education.candidate, { cascade: true })
+  educations: Education[];
 
-  // TODO: CRIAR ENTIDADE DE EDUCATIONS E EXPERIENCIES
   @OneToMany(() => Experience, (experience) => experience.candidate, { cascade: true })
   experiences: Experience[];
 }

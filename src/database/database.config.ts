@@ -1,9 +1,10 @@
-import { TypeOrmModule } from "@nestjs/typeorm";
-import { Module } from "@nestjs/common";
-import { env } from "src/config/env";
-import { User } from "src/modules/users/entities/user.entity";
-import { Candidate } from "src/modules/candidates/entities/candidate.entity";
-import { Experience } from "src/modules/experience/entities/experience.entity";
+import { TypeOrmModule } from '@nestjs/typeorm';
+import { Module } from '@nestjs/common';
+import { env } from 'src/config/env';
+import { User } from 'src/modules/users/entities/user.entity';
+import { Candidate } from 'src/modules/candidates/entities/candidate.entity';
+import { Education } from 'src/modules/education/entities/education.entity';
+import { Experience } from 'src/modules/experience/entities/experience.entity';
 
 @Module({
   imports: [
@@ -14,13 +15,13 @@ import { Experience } from "src/modules/experience/entities/experience.entity";
       username: env.DB_USERNAME,
       password: env.DB_PASSWORD,
       database: env.DB_NAME,
-      entities: [User, Candidate, Experience],
+      entities: [User, Candidate, Education, Experience],
       options: {
         encrypt: false, // importante se estiver rodando localmente
         trustServerCertificate: true,
       },
-      synchronize: true
+      synchronize: true,
     }),
   ],
 })
-export class DataBaseModule { }
+export class DataBaseModule {}

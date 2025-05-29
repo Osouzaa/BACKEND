@@ -28,7 +28,11 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
     const { email, role } = payload;
 
     if (role === 'admin') {
-      const user = await this.userRepository.findOne({ where: { email } });
+      const user = await this.userRepository.findOne(
+        {
+          where: { email }
+        }
+      );
       if (!user) throw new UnauthorizedException('User not found');
       return { ...user, role };
     } else if (role === 'candidate') {

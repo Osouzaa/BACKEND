@@ -1,4 +1,5 @@
 import { Education } from 'src/modules/education/entities/education.entity';
+import { Experience } from 'src/modules/experience/entities/experience.entity';
 import {
   Column,
   Entity,
@@ -16,7 +17,7 @@ export class Candidate {
   @Column({ type: 'varchar', length: 100 })
   name: string;
 
-  @Column({ type: 'varchar', length: 100, unique: true })
+  @Column({ type: 'varchar', length: 100 })
   email: string;
 
   @Column({ type: 'varchar', length: 20 })
@@ -28,7 +29,7 @@ export class Candidate {
   @Column({ type: 'datetime2', nullable: true })
   verifiedAt: Date | null;
 
-  @Column({ type: 'varchar', length: 14 })
+  @Column({ type: 'varchar', length: 14, unique: true })
   cpf: string;
 
   @Column({ type: 'varchar' })
@@ -55,8 +56,9 @@ export class Candidate {
   @UpdateDateColumn()
   updatedAt: Date;
 
-  @OneToMany(() => Education, (education) => education.candidate)
+  @OneToMany(() => Education, (education) => education.candidate, { cascade: true })
   educations: Education[];
 
-  // TODO: CRIAR ENTIDADE DE EDUCATIONS E EXPERIENCIES
+  @OneToMany(() => Experience, (experience) => experience.candidate, { cascade: true })
+  experiences: Experience[];
 }

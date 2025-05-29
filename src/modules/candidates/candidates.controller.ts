@@ -11,13 +11,13 @@ import {
 import { CandidatesService } from './candidates.service';
 import { CreateCandidateDto } from './dto/create-candidate.dto';
 import { UpdateCandidateDto } from './dto/update-candidate.dto';
-import { RolesGuard } from '../auth/guards/jwt-guard.role';
+import { RolesGuard } from '../../common/guards/jwt-guard.role';
 import { Roles } from 'src/decorators/roles.decorator';
-import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard';
+import { JwtAuthGuard } from '../../common/guards/jwt-auth.guard';
 
 @Controller('candidates')
 export class CandidatesController {
-  constructor(private readonly candidatesService: CandidatesService) {}
+  constructor(private readonly candidatesService: CandidatesService) { }
 
   @Post()
   create(@Body() createCandidateDto: CreateCandidateDto) {
